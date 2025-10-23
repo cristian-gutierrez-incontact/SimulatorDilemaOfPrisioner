@@ -9,10 +9,10 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class AlwaysColaborate : IStrategy
     {
-        public string Name { get;}
-        public AlwaysColaborate(string name)
+        public string Name { get; set; }
+        public AlwaysColaborate()
         {
-            Name = name;
+            Name = "AlwaysColaborate";
         }   
         public bool MakeDecision(List<Base.Set> history)
         {

@@ -7,11 +7,10 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class WorstOfBothWorlds : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public WorstOfBothWorlds(string name)
+        public WorstOfBothWorlds()
         {
-            Name = name;
         }
 
         public bool MakeDecision(List<Set> history)

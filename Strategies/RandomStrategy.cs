@@ -6,12 +6,12 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class RandomStrategy : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
         private readonly System.Random random;
 
-        public RandomStrategy(string name)
+        public RandomStrategy()
         {
-            Name = name;
+            Name = "RandomStrategy";
             random = new System.Random();
         }
 

@@ -7,12 +7,12 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class GenerousTitForTat : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
         private readonly System.Random random;
 
-        public GenerousTitForTat(string name)
+        public GenerousTitForTat()
         {
-            Name = name;
+            Name = "GenerousTitForTat";
             random = new System.Random();
         }
 

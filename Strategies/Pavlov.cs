@@ -7,11 +7,11 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class Pavlov : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public Pavlov(string name)
+        public Pavlov()
         {
-            Name = name;
+            Name = "Pavlov";
         }
 
         public bool MakeDecision(List<Set> history)

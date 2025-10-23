@@ -7,12 +7,12 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class Grudger : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
         private bool hasBeenBetrayed = false;
 
-        public Grudger(string name)
+        public Grudger()
         {
-            Name = name;
+            Name = "Grudger";
         }
 
         public bool MakeDecision(List<Set> history)

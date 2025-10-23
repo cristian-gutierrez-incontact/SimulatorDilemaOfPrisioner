@@ -7,11 +7,11 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class SuspiciousTitForTat : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public SuspiciousTitForTat(string name)
+        public SuspiciousTitForTat()
         {
-            Name = name;
+            Name = "SuspiciousTitForTat";
         }
 
         public bool MakeDecision(List<Set> history)

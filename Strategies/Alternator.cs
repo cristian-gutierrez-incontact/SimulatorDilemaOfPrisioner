@@ -7,11 +7,11 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class Alternator : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public Alternator(string name)
+        public Alternator()
         {
-            Name = name;
+            Name = "Alternator";
         }
 
         public bool MakeDecision(List<Set> history)

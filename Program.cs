@@ -1,46 +1,35 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using ServerDilemaDelPrisioner.Strategies.Base;
+using ServerDilemaDelPrisioner;
 using ServerDilemaDelPrisioner.Strategies;
+using ServerDilemaDelPrisioner.Strategies.Base;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ServerDilemaDelPrisioner;
+using System.Xml.Linq;
 
 Console.WriteLine("🎯 PRISONER'S DILEMMA SIMULATION");
 Console.WriteLine("=================================\n");
 
 List<IStrategy> strategies = new List<IStrategy>();
-strategies.Add(new Alternator("Alternator1"));
-strategies.Add(new Alternator("Alternator2"));
-strategies.Add(new AlwaysColaborate("AlwaysColaborate1"));
-strategies.Add(new AlwaysColaborate("AlwaysColaborate2"));
-strategies.Add(new AlwaysNoncooperation("AlwaysNoncooperation1"));
-strategies.Add(new AlwaysNoncooperation("AlwaysNoncooperation2"));
-strategies.Add(new GenerousTitForTat("GenerousTitForTat1"));
-strategies.Add(new GenerousTitForTat("GenerousTitForTat2"));
-strategies.Add(new Grudger("Grudger1"));
-strategies.Add(new Grudger("Grudger2"));
-strategies.Add(new OverlyForgiving("OverlyForgiving1"));
-strategies.Add(new OverlyForgiving("OverlyForgiving2"));
-strategies.Add(new Pavlov("Pavlov1"));
-strategies.Add(new Pavlov("Pavlov2"));
-strategies.Add(new RandomStrategy("RandomStrategy1"));
-strategies.Add(new RandomStrategy("RandomStrategy2"));
-strategies.Add(new SelfDestructive("SelfDestructive1"));
-strategies.Add(new SelfDestructive("SelfDestructive2"));
-strategies.Add(new SpitefulRandom("SpitefulRandom1"));
-strategies.Add(new SpitefulRandom("SpitefulRandom2"));
-strategies.Add(new SuspiciousTitForTat("SuspiciousTitForTat1"));
-strategies.Add(new SuspiciousTitForTat("SuspiciousTitForTat2"));
-strategies.Add(new TitForTat("TitForTat1"));
-strategies.Add(new TitForTat("TitForTat2"));
-strategies.Add(new TitForTwoTats("TitForTwoTats1"));
-strategies.Add(new TitForTwoTats("TitForTwoTats2"));
-strategies.Add(new TriggerHappy("TriggerHappy1"));
-strategies.Add(new TriggerHappy("TriggerHappy2"));
-strategies.Add(new WorstOfBothWorlds("WorstOfBothWorlds1"));
-strategies.Add(new WorstOfBothWorlds("WorstOfBothWorlds2"));
+strategies.Add(new GenerousTitForTat() { Name = "GenerousTitForTat1" });
+strategies.Add(new GenerousTitForTat() { Name = "GenerousTitForTat2" });
+strategies.Add(new Grudger() { Name = "Grudger1" });
+strategies.Add(new Grudger() { Name = "Grudger2" });
+strategies.Add(new OverlyForgiving() { Name = "OverlyForgiving1" });
+strategies.Add(new OverlyForgiving() { Name = "OverlyForgiving2" });
+strategies.Add(new Pavlov() { Name = "Pavlov1" });
+strategies.Add(new Pavlov() { Name = "Pavlov2" });
+strategies.Add(new RandomStrategy() { Name = "RandomStrategy1" });
+strategies.Add(new RandomStrategy() { Name = "RandomStrategy2" });
+strategies.Add(new SelfDestructive() { Name = "SelfDestructive1" });
+strategies.Add(new SelfDestructive() { Name = "SelfDestructive2" });
+strategies.Add(new SpitefulRandom() { Name = "SpitefulRandom1" });
+strategies.Add(new SpitefulRandom() { Name = "SpitefulRandom2" });
+strategies.Add(new SuspiciousTitForTat() { Name = "SuspiciousTitForTat1" });
+strategies.Add(new SuspiciousTitForTat() { Name = "SuspiciousTitForTat2" });
+strategies.Add(new TitForTat() { Name = "TitForTat1" });
+strategies.Add(new TitForTat() { Name = "TitForTat2" });
 
 int setsPerMatch = 300;
 

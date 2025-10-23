@@ -8,7 +8,7 @@ namespace ServerDilemaDelPrisioner.Strategies.Base
 {
     public interface IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
         public bool MakeDecision(List<Set> history);
     }
 }

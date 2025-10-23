@@ -27,28 +27,42 @@ namespace ServerDilemaDelPrisioner
 
         public void PlaySet(int numberSet)
         {
-            bool player1Cooperates = Player1Strategy.MakeDecision(SetResultsForPlayer1);
-            bool player2Cooperates = Player2Strategy.MakeDecision(SetResultsForPlayer2);
+            
+            Type type1 = Player1Strategy.GetType();
+            IStrategy instance1 = (IStrategy)Activator.CreateInstance(type1);
+            instance1.Name= Player1Strategy.Name;
+            Type type2 = Player2Strategy.GetType();
+            IStrategy instance2 = (IStrategy)Activator.CreateInstance(type2);
+            instance2.Name = Player2Strategy.Name;
+
+            bool player1Cooperates = instance1.MakeDecision(SetResultsForPlayer1);
+            bool player2Cooperates = instance2.MakeDecision(SetResultsForPlayer2);
             
             int score1, score2;
-            
+
             if (player1Cooperates && player2Cooperates)
             {
                 score1 = score2 = 3;
             }
-            else if (!player1Cooperates && !player2Cooperates)
-            {
-                score1 = score2 = 1;
-            }
-            else if (player1Cooperates && !player2Cooperates)
-            {
-                score1 = 0;
-                score2 = 5;
-            }
             else
             {
-                score1 = 5;
-                score2 = 0;
+                if (!player1Cooperates && !player2Cooperates)
+                {
+                    score1 = score2 = 1;
+                }
+                else
+                {
+                    if (player1Cooperates && !player2Cooperates)
+                    {
+                        score1 = 0;
+                        score2 = 5;
+                    }
+                    else
+                    {
+                        score1 = 5;
+                        score2 = 0;
+                    }
+                }
             }
             
             Player1Score += score1;

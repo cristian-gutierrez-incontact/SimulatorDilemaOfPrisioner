@@ -7,11 +7,11 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class SelfDestructive : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public SelfDestructive(string name)
+        public SelfDestructive()
         {
-            Name = name;
+            Name = "SelfDestructive";
         }
 
         public bool MakeDecision(List<Set> history)

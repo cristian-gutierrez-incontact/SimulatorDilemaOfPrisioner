@@ -7,12 +7,11 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class TriggerHappy : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
         private bool _triggered = false;
 
-        public TriggerHappy(string name)
+        public TriggerHappy()
         {
-            Name = name;
         }
 
         public bool MakeDecision(List<Set> history)

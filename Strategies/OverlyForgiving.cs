@@ -7,11 +7,11 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class OverlyForgiving : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public OverlyForgiving(string name)
+        public OverlyForgiving()
         {
-            Name = name;
+            Name = "OverlyForgiving";
         }
 
         public bool MakeDecision(List<Set> history)

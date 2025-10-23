@@ -7,13 +7,13 @@ namespace ServerDilemaDelPrisioner.Strategies
 {
     public class SpitefulRandom : IStrategy
     {
-        public string Name { get; }
+        public string Name { get; set; }
         private readonly Random _random;
         private bool _hasBeenBetrayed = false;
 
-        public SpitefulRandom(string name)
+        public SpitefulRandom()
         {
-            Name = name;
+            Name = "SpitefulRandom";
             _random = new Random();
         }
 
