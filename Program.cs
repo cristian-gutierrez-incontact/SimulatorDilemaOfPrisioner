@@ -30,7 +30,16 @@ strategies.Add(new SuspiciousTitForTat() { Name = "SuspiciousTitForTat1" });
 strategies.Add(new SuspiciousTitForTat() { Name = "SuspiciousTitForTat2" });
 strategies.Add(new TitForTat() { Name = "TitForTat1" });
 strategies.Add(new TitForTat() { Name = "TitForTat2" });
-
+strategies.Add(new Bernardo() { Name = "Bernardo1" });
+strategies.Add(new Bernardo() { Name = "Bernardo2" });
+strategies.Add(new GonzaloStrat() { Name = "GonzaloStrat1" });
+strategies.Add(new GonzaloStrat() { Name = "GonzaloStrat2" });
+strategies.Add(new AlvaroR() { Name = "AlvaroR1" });
+strategies.Add(new AlvaroR() { Name = "AlvaroR2" });
+strategies.Add(new AlvaroT() { Name = "AlvaroT1" });
+strategies.Add(new AlvaroT() { Name = "AlvaroT2" });
+strategies.Add(new Jesus() { Name = "Jesus1" });
+strategies.Add(new Jesus() { Name = "Jesus2" });
 int setsPerMatch = 300;
 
 MatchManager matchManager = new MatchManager(strategies, setsPerMatch);
