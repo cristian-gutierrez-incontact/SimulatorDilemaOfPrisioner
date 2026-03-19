@@ -1,0 +1,84 @@
+name: Check Sonar Qube
+
+on:
+  push: # Trigger the workflow on pushes to the master and develop branches
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - '**' # Trigger on pull requests to any branch
+    
+    # paths-ignore:
+    #   - 'ClearView Source/**'
+    #   - '.github/workflows/angular-ci.yml'
+  
+  workflow_dispatch: # Allow manual triggering of the workflow from the GitHub Actions tab
+
+jobs:
+  sonar-qube-run:
+    name: Running SonarQube Analysis
+    runs-on: windows-latest
+    
+    steps:
+      # - name: Cache SonarQube packages
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~\.sonar\cache
+      #     key: ${{ runner.os }}-sonar
+      #     restore-keys: ${{ runner.os }}-sonar
+
+      # - name: Cache SonarQube scanner
+      #   id: cache-sonar-scanner
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: .\.sonar\scanner
+      #     key: ${{ runner.os }}-sonar-scanner
+      #     restore-keys: ${{ runner.os }}-sonar-scanner
+
+      - name: Install SonarQube scanner
+        # if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory -Force
+          $url = "https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/11.1.0.132901/sonar-scanner-11.1.0.132901-net-framework.zip"
+          Invoke-WebRequest -Uri $url -OutFile sonar-scanner.zip
+          Expand-Archive -Path sonar-scanner.zip -DestinationPath .\.sonar\scanner -Force
+          Remove-Item sonar-scanner.zip
+
+      # - name: Begin SonarQube analysis
+      #   run: |
+      #     .\.sonar\scanner\SonarScanner.MSBuild.exe begin /k:"clearviewdevelopment_clearview-core_dotnet" /d:"sonar.token=${{ secrets.SONAR_TOKEN_DOTNET }}" /d:"sonar.host.url=${{ secrets.SONAR_HOST_URL }}"
+      
+      - name: Begin SonarQube analysis
+        env:
+          SONAR_PROJ_KEY: ${{ secrets.SONAR_PROJ_KEY }}         # Project key (unique ID in SonarQube/SonarCloud; you choose it, must be unique)
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}         # e.g. https://sonarqube.myorg.com
+          SONAR_TOKEN_DOTNET: ${{ secrets.SONAR_TOKEN_DOTNET }} # store in repo/org secrets
+        # run: |
+        #   .\.sonar\scanner\SonarScanner.MSBuild.exe begin /k:"clearviewdevelopment_clearview-core_dotnet" /d:"sonar.token=${{ secrets.SONAR_TOKEN_DOTNET }}"  /d:"sonar.host.url=${{ secrets.SONAR_HOST_URL }}" /d:sonar.qualitygate.wait=true /d:sonar.qualitygate.timeout=600 /d:sonar.scanner.scanAll=false /d:sonar.exclusions=**/*.js,**/*.ts /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+        
+        shell: powershell
+        run: |
+          SonarScanner.MSBuild.exe begin 
+            /k:"$env:SONAR_PROJ_KEY" 
+            /n:"ApiTesterBuilder"  # Project name (pretty name shown in the UI)
+            /v:"${{ github.run_number }}"  # Project version (can be any string, often set to the build number or commit hash)
+            /d:sonar.host.url="$env:SONAR_HOST_URL" 
+            /d:sonar.token="$env:SONAR_TOKEN_DOTNET" 
+
+            #/d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx" 
+            #/d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml" 
+
+            /d:sonar.scanner.scanAll=false 
+            /d:sonar.exclusions=**/*.js,**/*.md 
+
+            #/d:sonar.coverageReportPaths="**/coverage.cobertura.xml"
+            #/d:sonar.qualitygate.wait=true 
+            #/d:sonar.qualitygate.timeout=600 
+            #/d:sonar.scanner.scanAll=false 
+            #/d:sonar.exclusions=**/*.js,**/*.ts 
+            #/d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+      - name: End SonarQube analysis
+        run: .\.sonar\scanner\SonarScanner.MSBuild.exe end /d:"sonar.token=${{ secrets.SONAR_TOKEN_DOTNET }}"
+        #run: .\.sonar\scanner\SonarScanner.MSBuild.exe end /d:"sonar.token=${{ secrets.SONAR_TOKEN_DOTNET }}"
