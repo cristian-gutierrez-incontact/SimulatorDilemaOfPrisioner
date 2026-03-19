@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimulatorDilemaOfPrisioner\ServerDilemaDelPrisioner.csproj" />
+    <ProjectReference Include="..\ServerDilemaDelPrisioner\ServerDilemaDelPrisioner.csproj" />
   </ItemGroup>
 
 </Project>

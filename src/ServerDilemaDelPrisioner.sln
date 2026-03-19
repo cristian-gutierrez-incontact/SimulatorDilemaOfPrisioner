@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.4.11612.150 stable
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerDilemaDelPrisioner", "\src\ServerDilemaDelPrisioner\ServerDilemaDelPrisioner.csproj", "{59069D9E-7625-FB42-C8A8-6910D817B097}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerDilemaDelPrisioner", "ServerDilemaDelPrisioner\ServerDilemaDelPrisioner.csproj", "{59069D9E-7625-FB42-C8A8-6910D817B097}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerDilemaDelPrisioner.Test", "\src\ServerDilemaDelPrisioner.Test\ServerDilemaDelPrisioner.Test.csproj", "{89CD47C4-3C06-4E27-A62F-6E69F0FAC403}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerDilemaDelPrisioner.Test", "ServerDilemaDelPrisioner.Test\ServerDilemaDelPrisioner.Test.csproj", "{89CD47C4-3C06-4E27-A62F-6E69F0FAC403}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
