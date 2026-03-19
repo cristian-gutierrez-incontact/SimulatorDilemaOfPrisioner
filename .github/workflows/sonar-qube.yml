@@ -61,7 +61,7 @@ jobs:
         
         shell: powershell
         run: |
-          SonarScanner.MSBuild.exe begin 
+          .\.sonar\scanner\SonarScanner.MSBuild.exe begin 
             /k:"$env:SONAR_PROJ_KEY" 
             /n:"ServerDilemaDelPrisionero"  # Project name (pretty name shown in the UI)
             /v:"${{ github.run_number }}"  # Project version (can be any string, often set to the build number or commit hash)
@@ -72,7 +72,7 @@ jobs:
             #/d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml" 
 
             /d:sonar.scanner.scanAll=false 
-            /d:sonar.exclusions=**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json,**/node_modules/**,**/bin/**,**/obj/**  
+            /d:sonar.exclusions=**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json,**/node_modules/**,**/bin/**,**/obj/**
 
             #/d:sonar.coverageReportPaths="**/coverage.cobertura.xml"
             #/d:sonar.qualitygate.wait=true 
