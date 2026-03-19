@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServerDilemaDelPrisioner.Strategies
 {
-    internal class GonzaloStrat : IStrategy
+    public class GonzaloStrat : IStrategy
     {
         private object random;
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServerDilemaDelPrisioner.Strategies
 {
-    internal class Bernardo : IStrategy
+    public class Bernardo : IStrategy
     {
         public string Name { get; set; }
 
