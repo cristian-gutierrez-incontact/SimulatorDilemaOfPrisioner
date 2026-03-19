@@ -72,7 +72,7 @@ jobs:
             #/d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml" 
 
             /d:sonar.scanner.scanAll=false 
-            /d:sonar.exclusions=**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json
+            /d:sonar.exclusions="**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json"
 
             #/d:sonar.coverageReportPaths="**/coverage.cobertura.xml"
             #/d:sonar.qualitygate.wait=true 
