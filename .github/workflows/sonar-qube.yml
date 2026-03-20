@@ -65,6 +65,8 @@ jobs:
             /k:"${{ vars.SONAR_PROJ_KEY }}" `
             /o:"${{ vars.SONAR_ORGANIZATION }}" `
             /d:sonar.token=""${{ vars.SONAR_TOKEN_DOTNET }}"" `
+            /d:sonar.scanner.scanAll=false `
+            /d:sonar.exclusions="**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json" `
             /n:"ServerDilemaDelPrisionero" ` # Project name (pretty name shown in the UI)
             #/v:"${{ github.run_number }}" ` # Project version (can be any string, often set to the build number or commit hash)
             
@@ -72,8 +74,7 @@ jobs:
             #/d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx" 
             #/d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml" 
 
-            /d:sonar.scanner.scanAll=false `
-            /d:sonar.exclusions="**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json" `
+            
 
             #/d:sonar.coverageReportPaths="**/coverage.cobertura.xml"
             #/d:sonar.qualitygate.wait=true 
