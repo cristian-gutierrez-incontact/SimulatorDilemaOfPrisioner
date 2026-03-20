@@ -83,5 +83,8 @@ jobs:
             #/d:sonar.exclusions=**/*.js,**/*.ts 
             #/d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
       - name: End SonarQube analysis
-        run: .\.sonar\scanner\SonarScanner.MSBuild.exe end /d:sonar.token="$env:SONAR_TOKEN_DOTNET"
+        shell: powershell
+        run: |
+          .\.sonar\scanner\SonarScanner.MSBuild.exe end `
+            /d:sonar.token=""${{ vars.SONAR_TOKEN_DOTNET }}"" `
         #run: .\.sonar\scanner\SonarScanner.MSBuild.exe end /d:"sonar.token=${{ secrets.SONAR_TOKEN_DOTNET }}"
