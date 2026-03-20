@@ -66,9 +66,11 @@ jobs:
           .\.sonar\scanner\SonarScanner.MSBuild.exe begin `
             /k:"${{ vars.SONAR_PROJ_KEY }}" `
             /o:"${{ vars.SONAR_ORGANIZATION }}" `
-            /d:sonar.token=""${{ vars.SONAR_TOKEN_DOTNET }}"" `
+            /d:sonar.token="${{ vars.SONAR_TOKEN_DOTNET }}" `
             /d:sonar.scanner.scanAll=false `
             /d:sonar.exclusions="**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json" `
+            /d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml" `
+            /d:sonar.cs.vstest.reportsPaths="./TestResults/**/*.trx" `
             /n:"ServerDilemaDelPrisionero" ` # Project name (pretty name shown in the UI)
             #/v:"${{ github.run_number }}" ` # Project version (can be any string, often set to the build number or commit hash)
             
@@ -84,8 +86,30 @@ jobs:
             #/d:sonar.scanner.scanAll=false 
             #/d:sonar.exclusions=**/*.js,**/*.ts 
             #/d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
       - name: Build
-        run: dotnet build src/ServerDilemaDelPrisioner/ServerDilemaDelPrisioner.csproj
+        run: dotnet build ServerDilemaDelPrisioner.sln --configuration Release
+      
+      - name: Add Coverlet Collector Package
+        run: dotnet add ServerDilemaDelPrisioner.Test/ServerDilemaDelPrisioner.Test.csproj package coverlet.collector
+      
+      - name: Run Tests with Coverage
+        run: |
+          dotnet test ServerDilemaDelPrisioner.sln `
+            --configuration Release `
+            --no-build `
+            --logger "trx;LogFileName=test-results.trx" `
+            --collect:"XPlat Code Coverage" `
+            --results-directory ./TestResults
+
+      - name: Convert Coverage to SonarQube Format
+        shell: powershell
+        run: |
+          dotnet tool install --global dotnet-coverage
+          dotnet-coverage merge ./TestResults/**/*.coverage -f xml -o coverage.xml
       - name: End SonarQube analysis
         shell: powershell
         run: |
