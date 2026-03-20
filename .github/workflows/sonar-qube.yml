@@ -83,7 +83,7 @@ jobs:
             #/d:sonar.exclusions=**/*.js,**/*.ts 
             #/d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
       - name: Build
-        run: dotnet build src\ServerDilemaDelPrisioner\ServerDilemaDelPrisioner.csproj
+        run: dotnet build src/ServerDilemaDelPrisioner/ServerDilemaDelPrisioner.csproj
       - name: End SonarQube analysis
         shell: powershell
         run: |
