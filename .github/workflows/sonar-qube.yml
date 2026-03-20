@@ -61,18 +61,18 @@ jobs:
         
         shell: powershell
         run: |
-          .\.sonar\scanner\SonarScanner.MSBuild.exe begin 
-            /k:"$env:SONAR_PROJ_KEY" 
-            /n:"ServerDilemaDelPrisionero"  # Project name (pretty name shown in the UI)
-            /v:"${{ github.run_number }}"  # Project version (can be any string, often set to the build number or commit hash)
-            /o:"$env:SONAR_ORGANIZATION" 
-            /d:sonar.token="$env:SONAR_TOKEN_DOTNET" 
+          .\.sonar\scanner\SonarScanner.MSBuild.exe begin `
+            /k:"$env:SONAR_PROJ_KEY" `
+            /n:"ServerDilemaDelPrisionero" ` # Project name (pretty name shown in the UI)
+            /v:"${{ github.run_number }}" ` # Project version (can be any string, often set to the build number or commit hash)
+            /o:"$env:SONAR_ORGANIZATION" `
+            /d:sonar.token="$env:SONAR_TOKEN_DOTNET" `
 
             #/d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx" 
             #/d:sonar.cs.vscoveragexml.reportsPaths="coverage.xml" 
 
-            /d:sonar.scanner.scanAll=false 
-            /d:sonar.exclusions="**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json"
+            /d:sonar.scanner.scanAll=false `
+            /d:sonar.exclusions="**/*.js,**/*.md,**/*.ps1,**/*.yml,**/*.yaml,**/*.json" `
 
             #/d:sonar.coverageReportPaths="**/coverage.cobertura.xml"
             #/d:sonar.qualitygate.wait=true 
