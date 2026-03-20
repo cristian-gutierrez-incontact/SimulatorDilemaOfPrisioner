@@ -63,9 +63,9 @@ jobs:
         run: |
           .\.sonar\scanner\SonarScanner.MSBuild.exe begin `
             /k:"${{ vars.SONAR_PROJ_KEY }}" `
+            /o:"${{ vars.SONAR_ORGANIZATION }}" `
             /n:"ServerDilemaDelPrisionero" ` # Project name (pretty name shown in the UI)
             /v:"${{ github.run_number }}" ` # Project version (can be any string, often set to the build number or commit hash)
-            /o:"${{ vars.SONAR_ORGANIZATION }}" `
             /d:sonar.token="${{ secrets.SONAR_TOKEN_DOTNET }}" `
 
             #/d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx" 
