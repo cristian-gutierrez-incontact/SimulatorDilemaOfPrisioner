@@ -62,10 +62,10 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\SonarScanner.MSBuild.exe begin `
-            /k:"$SONAR_PROJ_KEY" `
+            /k:"${{ vars.SONAR_PROJ_KEY }}" `
             /n:"ServerDilemaDelPrisionero" ` # Project name (pretty name shown in the UI)
             /v:"${{ github.run_number }}" ` # Project version (can be any string, often set to the build number or commit hash)
-            /o:"$SONAR_ORGANIZATION" `
+            /o:"${{ vars.SONAR_ORGANIZATION }}" `
             /d:sonar.token="${{ secrets.SONAR_TOKEN_DOTNET }}" `
 
             #/d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx" 
