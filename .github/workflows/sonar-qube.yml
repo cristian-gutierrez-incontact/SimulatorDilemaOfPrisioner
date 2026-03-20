@@ -91,14 +91,14 @@ jobs:
         with:
           dotnet-version: '9.0.x'
       - name: Build
-        run: dotnet build ServerDilemaDelPrisioner.sln --configuration Release
+        run: dotnet build src/ServerDilemaDelPrisioner.sln --configuration Release
       
       - name: Add Coverlet Collector Package
-        run: dotnet add ServerDilemaDelPrisioner.Test/ServerDilemaDelPrisioner.Test.csproj package coverlet.collector
+        run: dotnet add src/ServerDilemaDelPrisioner.Test/ServerDilemaDelPrisioner.Test.csproj package coverlet.collector
       
       - name: Run Tests with Coverage
         run: |
-          dotnet test ServerDilemaDelPrisioner.sln `
+          dotnet test src/ServerDilemaDelPrisioner.sln `
             --configuration Release `
             --no-build `
             --logger "trx;LogFileName=test-results.trx" `
